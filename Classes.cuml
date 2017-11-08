@@ -1,0 +1,15 @@
+!define CLASSES
+
+!define MIXIN (M, lightblue) Mixin
+
+!define LEFT_MIXIN (L, lightblue) Left Mixin
+
+!define RIGHT_MIXIN (R, lightblue) Right Mixin
+
+!define PROTOTYPE (P, violet) Prototype
+
+!define SINGLETON (S, orange) Singleton
+
+!define GENERIC (G, red) Generic
+
+!define static(x) <u>x</u>
