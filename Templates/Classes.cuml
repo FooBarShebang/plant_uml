@@ -13,3 +13,5 @@
 !define GENERIC (G, red) Generic
 
 !define static(x) <u>x</u>
+
+!define abstract(x) <i>x</i>

@@ -1,0 +1,71 @@
+@startuml
+
+/' the purpose if to demonstrate the new aliases and macroses
+defined for the class diagram '/
+
+!ifndef CLASSES
+!include ../Templates/Classes.cuml
+!endif
+
+title Class  Diagram Example
+
+/' standard syntax '/
+
+abstract class AbstractClass {
+    - {abstract} some_method() : int -> float
+}
+
+interface FooInterface {
+    + some_other_method() : int -> float
+}
+
+class BarClass {
+    - {static} some_class_attribute : int
+    + some_instance_attribute : float
+    - some_method() : int -> float # implemented
+}
+
+AbstractClass <|-- BarClass
+
+FooInterface <|-- BarClass
+
+enum States {
+    OK
+    NOK
+    NAN
+}
+
+/' extended syntax '/
+
+class Proto <<PROTOTYPE>> {
+    {field} - static(some_class_attribute) : int
+    + some_instance_attribute : float
+    - abstract(some_method()) : int -> float
+}
+
+BarClass <-- Proto : < calls
+
+class Mix <<MIXIN>> {
+    + some_other_method() : int -> float
+}
+
+class Specific {
+    - some_method() : int -> float # implemented
+}
+
+Proto <|-- Specific
+
+Mix <|-- Specific
+
+class Universal <<GENERIC>> {
+    + some__method() : type A -> float
+}
+
+States <-- Universal : < uses
+
+class Solo <<SINGLETON>> {
+    {field} static(class_attributes_only)
+    static(class_methods_only())
+}
+
+@enduml

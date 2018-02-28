@@ -1,0 +1,50 @@
+@startuml
+title standards.constructions_view
+
+!define STANDARDS_MATERIALS_VIEW
+
+!ifndef TABLES
+!include ../Templates/Tables.cuml
+!endif
+
+!ifndef STANDARDS_PARTS
+!include ./standards_parts.iuml
+!endif
+
+!ifndef STANDARDS_MATERIALS
+!include ./standards_materials.iuml
+!endif
+
+many(materials, parts, u)
+
+!ifndef STANDARDS_CONSTRUCTIONS
+!include ./standards_constructions.iuml
+!endif
+
+many(constructions, parts, r)
+
+!ifndef STANDARDS_MATERIAL_TYPES
+!include ./standards_material_types.iuml
+!endif
+
+many(material_types, materials, u)
+
+left_join(parts, constructions, parts.construction_id, constructions.id, j1, parts)
+
+left_join(j1, materials, parts.material_id, materials.id, j2)
+
+left_join(j2, material_types, material_type.id, material_types.id, j3)
+
+view(constructions_view) {
+    {field} constructions.name AS construction: varchar(10) NOT NULL
+    {field} constructions.comment AS description: varchar(255)
+    {field} material_types.name AS part: varchar(20)
+    {field} materials.name AS material_name: varchar(20)
+    {field} materials.comment AS material_comment: varchar(255)
+    {field} materials.producer /AS producer/: varchar(20)
+    {field} materials.provider /AS provider/: varchar(20)
+}
+
+j3 <|-- constructions_view : SELECT
+
+@enduml

@@ -1,0 +1,43 @@
+!define TABLES
+
+!define table(x) class x <<(T,#FFAAAA) Table>>
+
+!define enumeration(x) class x <<(E, lightblue) EnumTable>>
+
+!define sequence(x) class x <<(S, red) Sequence>>
+
+!define index(x) class x <<(I, orange) Index>>
+
+!define view(x) class x <<(V, violet) View>>
+
+!define primary(x) <u><b>x</b></u> : serial NOT NULL PRIMARY KEY
+
+!define small_primary(x) <u><b>x</b></u> : smallserial NOT NULL PRIMARY KEY
+
+!define foreign(x, y, z) <i><b>x</b></i> : integer NOT NULL REFERENCES <b>y.z</b>
+
+!define small_foreign(x, y, z) <i><b>x</b></i> : smallint NOT NULL REFERENCES <b>y.z</b>
+
+!define unique_foreign(x, y, z) <i><b>x</b></i> : integer UNIQUE NOT NULL REFERENCES <b>y.z</b>
+
+!define small_unique_foreign(x, y, z) <i><b>x</b></i> : smallint UNIQUE NOT NULL REFERENCES <b>y.z</b>
+
+!define one(x, y, z = 'd') x "1" -z- "1" y
+
+!define one_dot(x, y, z = 'd') x "1" .z. "1"
+
+!define many(x, y, z = 'd') x "1" -z- "*" y
+
+!define many_dot(x, y, z = 'd') x "1" .z. "*" y
+
+!definelong left_join(x, y, z, v, w, s ='')
+class " " as w <<(J, pink) LEFT JOIN>> {
+    {field} s <b>LEFT OUTER JOIN</b> y
+    {field} <b>ON</b> z = v
+}
+
+x --* w
+
+y --* w
+
+!enddefinelong

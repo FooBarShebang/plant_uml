@@ -1,0 +1,7 @@
+!define GENERAL
+
+/' may not work properly with some PlantUML plugins, e.g. for Eclipse,
+depending on the Java installation / RTE environment variables as well
+as of the dot / ditaa / graphviz installation '/
+
+!define GENERATED %date['Generated on' yyyy.MM.dd 'at' HH:MM]%

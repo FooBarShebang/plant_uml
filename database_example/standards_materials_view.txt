@@ -1,0 +1,34 @@
+@startuml
+title standards.materials_view
+
+!define STANDARDS_MATERIALS_VIEW
+
+!ifndef TABLES
+!include ../Templates/Tables.cuml
+!endif
+
+!ifndef STANDARDS_MATERIAL_TYPES
+!include ./standards_material_types.iuml
+!endif
+
+!ifndef STANDARDS_MATERIALS
+!include ./standards_materials.iuml
+!endif
+
+many(material_types, materials, l)
+
+left_join(materials, material_types, materials.material_type_id, material_types.id, j1, materials)
+
+view(materials_view) {
+    {field} materials.name AS m_name: varchar(20) UNIQUE NOT NULL
+    {field} material_types.name AS m_type: varchar(20)
+    {field} materials.producer /AS producer/: varchar(20)
+    {field} materials.provider /AS provider/: varchar(20)
+    {field} materials.comment /AS comment/: varchar(255)
+    {field} materials.registration_path AS path: varchar(255)
+}
+
+j1 <|-- materials_view
+
+
+@enduml

@@ -1,0 +1,16 @@
+!define STANDARDS_TYPES
+
+!ifndef TABLES
+!include ../Templates/Tables.cuml
+!endif
+
+enumeration(types) {
+    {field} primary(id)
+    {field} name: varchar(20) UNIQUE NOT NULL
+    !ifndef HIDE
+        {field} comment: varchar(255)
+        can_calibrate: bool NOT NULL DEFAULT FALSE
+        calibration_period: smallint NOT NULL DEFAULT 12
+        {method} usage types as production, etc.
+    !endif
+}

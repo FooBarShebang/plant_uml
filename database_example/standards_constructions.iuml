@@ -1,0 +1,19 @@
+!define STANDARDS_CONSTRUCTIONs
+
+!ifndef TABLES
+!include ../Templates/Tables.cuml
+!endif
+
+enumeration(constructions) {
+    {field} primary(id)
+    {field} name: varchar(10) UNIQUE NOT NULL
+    !ifndef HIDE
+        {field} comment: varchar(255)
+        can_fluorescence: bool NOT NULL DEFAULT FALSE
+        can_reflectance: bool NOT NULL DEFAULT FALSE
+        can_both: bool NOT NULL DEFAULT FALSE
+        is_active: bool NOT NULL DEFAULT FALSE
+        {field} registration_path: varchar(255)
+        {method} main construction properties
+    !endif
+}

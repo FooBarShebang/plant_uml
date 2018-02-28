@@ -1,0 +1,17 @@
+!define STANDARDS_CHANGES
+
+!ifndef TABLES
+!include ../Templates/Tables.cuml
+!endif
+
+table(changes) {
+    {field} primary(id)
+    event_date: date NOT NULL
+    {field} foreign(standard_id, serials, id)
+    {field} foreign(change_id, change_types, id)
+    !ifndef HIDE\
+        {filed} old_value: varchar(20)
+        {filed} new_value: varchar(20)
+        {method} journal of hardware changes
+    !endif
+}

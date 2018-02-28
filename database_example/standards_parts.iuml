@@ -1,0 +1,14 @@
+!define STANDARDS_PARTS
+
+!ifndef TABLES
+!include ../Templates/Tables.cuml
+!endif
+
+enumeration(parts) {
+    {field} primary(id)
+    {field} foreign(material_id, materials, id)
+    {field} foreign(construction_id, constructions, id)
+    !ifndef HIDE
+        {method} list of parts of standards
+    !endif
+}

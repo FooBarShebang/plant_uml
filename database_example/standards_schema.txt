@@ -1,0 +1,94 @@
+@startuml
+
+!define STANDARDS_SCHEMA
+
+!ifndef TABLES
+!include ../Templates/Tables.cuml
+!endif
+
+!ifndef STANDARDS_CHNAGE_TYPES
+!include ./standards_change_types.iuml
+!endif
+
+!ifndef STANDARDS_CHANGES
+!include ./standards_changes.iuml
+!endif
+
+many(change_types, changes, u)
+
+!ifndef STANDARDS_MATERIAL_TYPES
+!include ./standards_material_types.iuml
+!endif
+
+!ifndef STANDARDS_MATERIALS
+!include ./standards_materials.iuml
+!endif
+
+many(material_types, materials, l)
+
+!ifndef STANDARDS_PARTS
+!include ./standards_parts.iuml
+!endif
+
+many(materials, parts, d)
+
+!ifndef STANDARDS_TYPES
+!include ./standards_types.iuml
+!endif
+
+!ifndef STANDARDS_CONSTRUCTIONS
+!include ./standards_constructions.iuml
+!endif
+
+!ifndef STANDARDS_SERIALS
+!include ./standards_serials.iuml
+!endif
+
+many(constructions, parts, u)
+
+many(changes, serials, u)
+
+many(types, serials)
+
+many(constructions, serials)
+
+namespace subjects {
+    !ifndef HIDE
+    !define HIDE
+    !endif
+    
+    !ifndef SUBJECTS_USERS
+    !include ./subjects_users.iuml
+    !endif
+    
+    table(operators) {
+    __
+    persons
+    }
+    
+    many(users, operators)
+    
+    !ifdef HIDE
+    !undef HIDE
+    !endif
+}
+
+many(subjects.users, serials)
+
+table(interaction_data)
+
+many(serials, interaction_data)
+
+many(subjects.operators, interaction_data)
+
+namespace readers {
+    table(serials) {
+    __
+    some external devices
+    }
+}
+
+many(readers.serials, interaction_data, u)
+
+
+@enduml

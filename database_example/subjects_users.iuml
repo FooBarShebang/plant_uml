@@ -1,0 +1,17 @@
+!define SUBJECTS_USERS
+
+!ifndef TABLES
+!include ../Templates/Tables.cuml
+!endif
+
+table(users) {
+    {field} primary(id)
+    {field} name: varchar(20) UNIQUE NOT NULL
+    !ifndef HIDE
+        {field} full_name: varchar(255)
+        {field} address: varchar(255)
+        {field} "e-mail": varchar(50)
+        {field} phone: varchar(20)
+        {method} companies as users
+    !endif
+}

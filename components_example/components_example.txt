@@ -1,0 +1,68 @@
+@startuml
+
+/' the purpose if to demonstrate the new aliases and macroses
+defined for the components diagram '/
+
+!ifndef COMPONENTS
+!include ../Templates/Components.cuml
+!endif
+
+title Components Diagram Example
+
+/' standard syntax '/
+
+cloud "Cloud services" {
+    package "Running services" {
+        component "First Service" as S1
+        S1 -> [Second service]
+        S1 <- [Second service]
+    }
+    S1 -down- FTP
+    interface "HTTP" as Internet
+    [Second service] -- Internet
+}
+
+node Server {
+    database "PostrgreSQL" {
+        frame Frontends {
+            [foo]
+            [bar]
+        }
+        
+        folder Tablespaces {
+            [data]
+        }
+        
+        Frontends --> Tablespaces
+        
+        FTP -- Frontends
+    }
+}
+
+/' extened syntax '/
+
+pc("Client PC", Client) {
+    library("Some library") {
+        package("Source code", Code) {
+            module("Core_effects", Core) {
+                class(IO)
+                class(load)
+                class(save)
+                IO <|--load
+                IO <|--save
+            }
+            module(Extras) {
+                class("rename --|> Core_effects::IO", rename)
+            }
+            Core <-- Extras : includes
+        }
+        package(Configurations) {
+            file("Bla Bla.JSON", Conf)
+        }
+        rename --> Conf : uses
+    }
+}
+
+Internet -- Client
+
+@enduml
