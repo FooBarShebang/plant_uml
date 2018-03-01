@@ -1,4 +1,8 @@
+/' for database modeling using modified class diagrams '/
+
 !define TABLES
+
+/' stereotypes / decorations '/
 
 !define table(x) class x <<(T,#FFAAAA) Table>>
 
@@ -10,17 +14,45 @@
 
 !define view(x) class x <<(V, violet) View>>
 
-!define primary(x) <u><b>x</b></u> : serial NOT NULL PRIMARY KEY
+/' field constrains '/
 
-!define small_primary(x) <u><b>x</b></u> : smallserial NOT NULL PRIMARY KEY
+/' primary key (single field) '/
 
-!define foreign(x, y, z) <i><b>x</b></i> : integer NOT NULL REFERENCES <b>y.z</b>
+!define primary(x) {field} <u><b>x</b></u> : serial NOT NULL PRIMARY KEY
 
-!define small_foreign(x, y, z) <i><b>x</b></i> : smallint NOT NULL REFERENCES <b>y.z</b>
+!define small_primary(x) {field} <u><b>x</b></u> : smallserial NOT NULL PRIMARY KEY
 
-!define unique_foreign(x, y, z) <i><b>x</b></i> : integer UNIQUE NOT NULL REFERENCES <b>y.z</b>
+/' foreign key single field to single field, 1 to many relation.
+first parameter - local table field's name, which references
+second parameter - name of the referenced table
+third parameter - name of the referenced field in the referenced table
+i.e. x REFERENCES y.z
+'/
 
-!define small_unique_foreign(x, y, z) <i><b>x</b></i> : smallint UNIQUE NOT NULL REFERENCES <b>y.z</b>
+!define foreign(x, y, z) {field} <i><b>x</b></i> : integer NOT NULL REFERENCES <b>y.z</b>
+
+!define small_foreign(x, y, z) {field} <i><b>x</b></i> : smallint NOT NULL REFERENCES <b>y.z</b>
+
+/' foreign key single field to single field, 1 to 1.
+first parameter - local table field's name, which references
+second parameter - name of the referenced table
+third parameter - name of the referenced field in the referenced table
+i.e. x REFERENCES y.z
+'/
+
+!define unique_foreign(x, y, z) {field} <i><b>x</b></i> : integer UNIQUE NOT NULL REFERENCES <b>y.z</b>
+
+!define small_unique_foreign(x, y, z) {field} <i><b>x</b></i> : smallint UNIQUE NOT NULL REFERENCES <b>y.z</b>
+
+!define comment(x) {method} x
+
+/' relations between the tables as "1 to 1" and "1 to many"
+first parameter - name of the source table (always 1)
+second parameter - name of the target table (many or 1)
+third parameter (optional) - direction of drawing from the source to the target,
+dafaults to 'd' (as down)
+e.g. x "1" -z- "*" y or "1" .z. "1" y
+'/
 
 !define one(x, y, z = 'd') x "1" -z- "1" y
 
@@ -30,14 +62,31 @@
 
 !define many_dot(x, y, z = 'd') x "1" .z. "*" y
 
+/' macro to create a representation of the LEFT OUTER JOIN of two tables based
+on equality of two qualified fields, which may belong to other tables, and to
+graphically link the JOIN object to the LEFT and RIGHT tables.
+first parameter (x) - single token as reference to the LEFT table
+second parameter (y) - single token as reference to the RIGHT table - always
+indicated in the SQL definition
+third parameter (z) - qualified name of a field, used in equality comparison
+forth parameter (v) - qualified name of the second field used in equality
+comparison
+fifth paremeter (w) - reference (single token) to be used for the created JOIN
+object (not shown in the diagram!)
+sixth parameter (s, optional, defaults to an empty string) - name to be
+indicated as the LEFT part of JOIN. Either leave it empty (for compound /nested
+JOIN statements), or use the same value as the first argument (x) - for the
+first JOIN in the chain.'
+i.e. - s LEFT OUTER JOIN y ON z = v - which is referenced as w '/
+
 !definelong left_join(x, y, z, v, w, s ='')
 class " " as w <<(J, pink) LEFT JOIN>> {
     {field} s <b>LEFT OUTER JOIN</b> y
     {field} <b>ON</b> z = v
 }
 
-x --* w
+x --* "L" w
 
-y --* w
+y --* "R" w
 
 !enddefinelong

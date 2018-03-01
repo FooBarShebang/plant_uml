@@ -5,9 +5,9 @@
 !endif
 
 enumeration(change_types) {
-    {field} primary(id)
+    primary(id)
     {field} name: varchar(20) UNIQUE NOT NULL
     !ifndef HIDE
-        {method} types of hardware changes to journal
+        comment(types of hardware changes to journal)
     !endif
 }

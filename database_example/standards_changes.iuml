@@ -5,13 +5,13 @@
 !endif
 
 table(changes) {
-    {field} primary(id)
+    primary(id)
     event_date: date NOT NULL
-    {field} foreign(standard_id, serials, id)
-    {field} foreign(change_id, change_types, id)
+    foreign(standard_id, serials, id)
+    foreign(change_id, change_types, id)
     !ifndef HIDE\
-        {filed} old_value: varchar(20)
-        {filed} new_value: varchar(20)
-        {method} journal of hardware changes
+        {field} old_value: varchar(20)
+        {field} new_value: varchar(20)
+        comment(journal of hardware changes)
     !endif
 }

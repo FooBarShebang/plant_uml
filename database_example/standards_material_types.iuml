@@ -5,9 +5,9 @@
 !endif
 
 enumeration(material_types) {
-    {field} primary(id)
+    primary(id)
     {field} name: varchar(20) UNIQUE NOT NULL
     !ifndef HIDE
-        {method} material types, e.g. flourophore, etc.
+        comment("material types, e.g. flourophore, etc.")
     !endif
 }

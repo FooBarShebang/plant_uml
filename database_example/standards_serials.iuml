@@ -5,17 +5,17 @@
 !endif
 
 table(serials) {
-    {field} primary(id)
+    primary(id)
     {field} name: varchar(10) UNIQUE NOT NULL
     !ifndef HIDE
         is_active: bool NOT NULL DEFAULT FALSE
         calibration_id: smallint
         calibration_date: date NOT NULL
     !endif
-    {field} foreign(type_id,types,id)
-    {field} foreign(user_id,subjects.users,id)
-    {field} foreign(construction_id,constructions,id)
+    foreign(type_id,types,id)
+    foreign(user_id,subjects.users,id)
+    foreign(construction_id,constructions,id)
     !ifndef HIDE
-        {method} main table for standards registration
+        comment(main table for standards registration)
     !endif
 }

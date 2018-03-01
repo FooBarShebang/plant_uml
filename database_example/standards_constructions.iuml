@@ -5,7 +5,7 @@
 !endif
 
 enumeration(constructions) {
-    {field} primary(id)
+    primary(id)
     {field} name: varchar(10) UNIQUE NOT NULL
     !ifndef HIDE
         {field} comment: varchar(255)
@@ -14,6 +14,6 @@ enumeration(constructions) {
         can_both: bool NOT NULL DEFAULT FALSE
         is_active: bool NOT NULL DEFAULT FALSE
         {field} registration_path: varchar(255)
-        {method} main construction properties
+        comment(main construction properties)
     !endif
 }

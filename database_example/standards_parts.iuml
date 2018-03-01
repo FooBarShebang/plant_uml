@@ -5,10 +5,10 @@
 !endif
 
 enumeration(parts) {
-    {field} primary(id)
+    primary(id)
     {field} foreign(material_id, materials, id)
     {field} foreign(construction_id, constructions, id)
     !ifndef HIDE
-        {method} list of parts of standards
+        comment(list of parts of standards)
     !endif
 }

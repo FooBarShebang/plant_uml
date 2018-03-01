@@ -38,9 +38,9 @@ enum States {
 /' extended syntax '/
 
 class Proto <<PROTOTYPE>> {
-    {field} - static(some_class_attribute) : int
+    - static_field(some_class_attribute) : int
     + some_instance_attribute : float
-    - abstract(some_method()) : int -> float
+    - abstract(some_method) : int -> float
 }
 
 BarClass <-- Proto : < calls
@@ -64,8 +64,8 @@ class Universal <<GENERIC>> {
 States <-- Universal : < uses
 
 class Solo <<SINGLETON>> {
-    {field} static(class_attributes_only)
-    static(class_methods_only())
+    static_field(class_attributes_only) : some_type
+    static_method(class_methods_only) : some_type -> other_type
 }
 
 @enduml

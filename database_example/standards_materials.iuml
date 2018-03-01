@@ -5,14 +5,14 @@
 !endif
 
 enumeration(materials) {
-    {field} primary(id)
+    primary(id)
     {field} name: varchar(20) UNIQUE NOT NULL
-    {field} foreign(material_type_id, material_types, id)
+    foreign(material_type_id, material_types, id)
     !ifndef HIDE
         {field} producer: varchar(20)
         {field} provider: varchar(20)
         {field} comment: varchar(255)
         {field} registration_path: varchar(255)
-        {method} materials used as parts of standards
+        comment(materials used as parts of standards)
     !endif
 }

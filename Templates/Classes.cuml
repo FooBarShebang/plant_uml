@@ -1,4 +1,8 @@
+/' for class diagrams'/
+
 !define CLASSES
+
+/' stereotypes / decorations '/
 
 !define MIXIN (M, lightblue) Mixin
 
@@ -12,6 +16,12 @@
 
 !define GENERIC (G, red) Generic
 
-!define static(x) <u>x</u>
+/' aliases for underline - alternative to {static} decorator'/
 
-!define abstract(x) <i>x</i>
+!define static_field(x) {field} <u>x</u>
+
+!define static_method(x) <u>x()</u>
+
+/' alias for italic - alternative to {abstract} decorator '/
+
+!define abstract(x) <i>x()</i>

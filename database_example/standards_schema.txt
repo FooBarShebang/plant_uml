@@ -61,9 +61,10 @@ namespace subjects {
     !include ./subjects_users.iuml
     !endif
     
+    users : comment(companies as users)
+    
     table(operators) {
-    __
-    persons
+    comment(persons)
     }
     
     many(users, operators)
@@ -75,7 +76,9 @@ namespace subjects {
 
 many(subjects.users, serials)
 
-table(interaction_data)
+table(interaction_data) {
+    comment(log journal)
+}
 
 many(serials, interaction_data)
 
@@ -83,8 +86,7 @@ many(subjects.operators, interaction_data)
 
 namespace readers {
     table(serials) {
-    __
-    some external devices
+    comment(some external devices)
     }
 }
 
