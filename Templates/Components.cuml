@@ -6,7 +6,7 @@
 Two variants are defined for each alias: with one and with two parameters.
 The first argument in both cases may be a single token (without quotes)
 or a several tokens (with spaces, etc.) taken into quotes - this is the
-dispaly name of the component. With only single argument call it is also the
+display name of the component. With only single argument call it is also the
 reference of the created element.
 The second argument must be a single token (without quotes) as the reference
 of the created element.
@@ -15,6 +15,10 @@ of the created element.
 !define class(x) component "x" <<class>>
 
 !define class(x, y) component "x" as y <<class>>
+
+!define class(x) component "x" <<function>>
+
+!define class(x, y) component "x" as y <<function>>
 
 !define file(x) component "x" <<file>>
 
