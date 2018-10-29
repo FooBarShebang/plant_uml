@@ -1,4 +1,4 @@
-@startuml
+@startuml standards_schema
 
 !define STANDARDS_SCHEMA
 

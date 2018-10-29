@@ -1,4 +1,4 @@
-@startuml
+@startuml components_example
 
 /' the purpose if to demonstrate the new aliases and macroses
 defined for the components diagram '/

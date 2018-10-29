@@ -1,4 +1,5 @@
-@startuml
+@startuml standards_materials_view
+
 title standards.materials_view
 
 !define STANDARDS_MATERIALS_VIEW
