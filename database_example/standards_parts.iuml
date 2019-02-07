@@ -1,7 +1,7 @@
 !define STANDARDS_PARTS
 
 !ifndef TABLES
-!include ../Templates/Tables.cuml
+!include ../Tables.cuml
 !endif
 
 enumeration(parts) {

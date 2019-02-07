@@ -1,7 +1,7 @@
 !define STANDARDS_CHANGES
 
 !ifndef TABLES
-!include ../Templates/Tables.cuml
+!include ../Tables.cuml
 !endif
 
 table(changes) {

@@ -1,7 +1,7 @@
 !define STANDARDS_CONSTRUCTIONs
 
 !ifndef TABLES
-!include ../Templates/Tables.cuml
+!include ../Tables.cuml
 !endif
 
 enumeration(constructions) {

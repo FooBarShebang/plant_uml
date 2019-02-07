@@ -1,7 +1,7 @@
 !define SUBJECTS_USERS
 
 !ifndef TABLES
-!include ../Templates/Tables.cuml
+!include ../Tables.cuml
 !endif
 
 table(users) {

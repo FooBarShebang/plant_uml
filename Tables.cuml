@@ -65,9 +65,9 @@ except_all(x, y, w, s ='')
 
 /' primary key (single field) '/
 
-!define primary(x) {field} <u><b>x</b></u> : serial NOT NULL PRIMARY KEY
+!define primary(x) {field} <&key><u><b>x</b></u> : serial NOT NULL PRIMARY KEY
 
-!define small_primary(x) {field} <u><b>x</b></u> : smallserial NOT NULL PRIMARY KEY
+!define small_primary(x) {field} <&key><u><b>x</b></u> : smallserial NOT NULL PRIMARY KEY
 
 /' foreign key single field to single field, 1 to many relation.
 first parameter - local table field's name, which references
@@ -76,9 +76,9 @@ third parameter - name of the referenced field in the referenced table
 i.e. x REFERENCES y.z
 '/
 
-!define foreign(x, y, z) {field} <i><b>x</b></i> : integer NOT NULL REFERENCES <b>y.z</b>
+!define foreign(x, y, z) {field} <&link-intact><i><b>x</b></i> : integer NOT NULL REFERENCES <b>y.z</b>
 
-!define small_foreign(x, y, z) {field} <i><b>x</b></i> : smallint NOT NULL REFERENCES <b>y.z</b>
+!define small_foreign(x, y, z) {field} <&link-intact><i><b>x</b></i> : smallint NOT NULL REFERENCES <b>y.z</b>
 
 /' foreign key single field to single field, 1 to 1.
 first parameter - local table field's name, which references
@@ -87,9 +87,9 @@ third parameter - name of the referenced field in the referenced table
 i.e. x REFERENCES y.z
 '/
 
-!define unique_foreign(x, y, z) {field} <i><b>x</b></i> : integer UNIQUE NOT NULL REFERENCES <b>y.z</b>
+!define unique_foreign(x, y, z) {field} <&link-intact><i><b>x</b></i> : integer UNIQUE NOT NULL REFERENCES <b>y.z</b>
 
-!define small_unique_foreign(x, y, z) {field} <i><b>x</b></i> : smallint UNIQUE NOT NULL REFERENCES <b>y.z</b>
+!define small_unique_foreign(x, y, z) {field} <&link-intact><i><b>x</b></i> : smallint UNIQUE NOT NULL REFERENCES <b>y.z</b>
 
 !define comment(x) {method} x
 

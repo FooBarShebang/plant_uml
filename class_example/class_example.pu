@@ -4,7 +4,7 @@
 defined for the class diagram '/
 
 !ifndef CLASSES
-!include ../Templates/Classes.cuml
+!include ../Classes.cuml
 !endif
 
 title Class  Diagram Example

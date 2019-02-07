@@ -1,7 +1,7 @@
 !define STANDARDS_MATERIALS
 
 !ifndef TABLES
-!include ../Templates/Tables.cuml
+!include ../Tables.cuml
 !endif
 
 enumeration(materials) {

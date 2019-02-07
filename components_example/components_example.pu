@@ -4,7 +4,7 @@
 defined for the components diagram '/
 
 !ifndef COMPONENTS
-!include ../Templates/Components.cuml
+!include ../Components.cuml
 !endif
 
 title Components Diagram Example

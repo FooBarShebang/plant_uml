@@ -5,7 +5,7 @@ title standards.materials_view
 !define STANDARDS_MATERIALS_VIEW
 
 !ifndef TABLES
-!include ../Templates/Tables.cuml
+!include ../Tables.cuml
 !endif
 
 !ifndef STANDARDS_MATERIAL_TYPES

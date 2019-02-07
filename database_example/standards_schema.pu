@@ -3,7 +3,7 @@
 !define STANDARDS_SCHEMA
 
 !ifndef TABLES
-!include ../Templates/Tables.cuml
+!include ../Tables.cuml
 !endif
 
 !ifndef STANDARDS_CHNAGE_TYPES

@@ -1,7 +1,7 @@
 !define STANDARDS_MATERIAL_TYPES
 
 !ifndef TABLES
-!include ../Templates/Tables.cuml
+!include ../Tables.cuml
 !endif
 
 enumeration(material_types) {
