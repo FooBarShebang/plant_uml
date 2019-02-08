@@ -1,4 +1,4 @@
-# PlantUML_Templates
+# PlantUML Templates
 
 A set of templates (as macro / preprocessor directives) for the commonly used
 (in my personal experience - Anton Azarov) tasks in creating UML diagrams using

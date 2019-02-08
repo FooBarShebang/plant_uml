@@ -2,7 +2,7 @@
 
 ## 2019-02-07 Version 0.1.0.1
 
-Re-organized structure to fit better the sub-module approach. Added key and link symbols to the primary and foreign keys respectively.
+Re-organized structure to fit better the submodule approach. Added key and link symbols to the primary and foreign keys respectively.
 
 ## 2018-10-26 Version 0.1.0.0
 
