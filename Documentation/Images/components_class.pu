@@ -1,0 +1,11 @@
+@startuml components_class
+
+!include ../../Components.cuml
+
+class(ClassName)
+
+class(Class Alias, ClassName2)
+
+ClassName - ClassName2
+
+@enduml

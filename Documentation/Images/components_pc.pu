@@ -1,0 +1,15 @@
+@startuml components_pc
+
+!include ../../Components.cuml
+
+pc(User)
+
+pc(Another User, User2)
+
+interface network
+
+User )-- network
+
+User2 )-- network
+
+@enduml

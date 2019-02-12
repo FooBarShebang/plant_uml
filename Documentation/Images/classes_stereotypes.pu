@@ -1,0 +1,17 @@
+@startuml classes_stereotypes
+
+!include ../../Classes.cuml
+
+class Mixin1 <<MIXIN>>
+
+class Mixin2 <<LEFT_MIXIN>>
+
+class Mixin3 <<RIGHT_MIXIN>>
+
+class Proto <<PROTOTYPE>>
+
+class Single <<SINGLETON>>
+
+class ABC <<GENERIC>>
+
+@enduml

@@ -1,0 +1,15 @@
+@startuml components_library
+
+!include ../../Components.cuml
+
+library(Name) {
+    module(io)
+}
+
+library(Long Name, Name2) {
+    module(communication)
+}
+
+Name <|-- Name2 : depends
+
+@enduml

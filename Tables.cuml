@@ -59,7 +59,7 @@ except_all(x, y, w, s ='')
 
 !define view(x) class x <<(V, violet) View>>
 
-!define query(x, y = ' ') class y <<(Q, violet) Query>> as x
+!define query(x, y = ' ') class "y" as x <<(Q, violet) Query>>
 
 /' field constrains '/
 
@@ -97,7 +97,7 @@ i.e. x REFERENCES y.z
 first parameter - name of the source table (always 1)
 second parameter - name of the target table (many or 1)
 third parameter (optional) - direction of drawing from the source to the target,
-dafaults to 'd' (as down)
+defaults to 'd' (as down)
 e.g. x "1" -z- "*" y or "1" .z. "1" y
 '/
 

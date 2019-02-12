@@ -1,0 +1,19 @@
+@startuml tables_comment
+
+!include ../../Tables.cuml
+
+table(MyTable) {
+    id_value : integer
+    is_active: bool
+    comment('some simple table for the unknown purposes')
+}
+
+view(MyView) {
+    id_value : integer
+    comment('WHERE is_active IS true')
+    comment('ORDER BY id_value')
+}
+
+MyTable <|-- MyView : SELECT
+
+@enduml

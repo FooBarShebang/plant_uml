@@ -1,0 +1,15 @@
+@startuml components_module
+
+!include ../../Components.cuml
+
+module(Name) {
+    class(SomeClass)
+}
+
+module(Long Name, Name2) {
+    function(SomeCallback)
+}
+
+Name ---|> Name2 : includes
+
+@enduml

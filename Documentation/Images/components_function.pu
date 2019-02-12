@@ -1,0 +1,11 @@
+@startuml components_function
+
+!include ../../Components.cuml
+
+function(Name)
+
+function(Long Name, Name2)
+
+Name - Name2
+
+@enduml

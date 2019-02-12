@@ -1,0 +1,15 @@
+@startuml components_package
+
+!include ../../Components.cuml
+
+package(Name) {
+    file(SomeData)
+}
+
+package(Long Name, Name2) {
+    file(SomeOtherData)
+}
+
+Name -- Name2 : same distribution
+
+@enduml

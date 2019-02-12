@@ -1,0 +1,12 @@
+@startuml tables_keys
+
+!include ../../Tables.cuml
+
+table(Users) {
+    primary(id)
+    {field} full_name: varchar(255)
+    small_unique_foreign(function_id, Organization, functions)
+    foreign(office_id, Buildings, offices)
+}
+
+@enduml

@@ -1,0 +1,39 @@
+@startuml tables_joins
+
+!include ../../Tables.cuml
+
+table(Organization) {
+    primary(id)
+    {field} function: varchar(20)
+}
+
+table(Buildings) {
+    primary(id)
+    {field} address: varchar(255)
+}
+
+table(Users) {
+    primary(id)
+    {field} full_name: varchar(255)
+    small_unique_foreign(function_id, Organization, id)
+    foreign(office_id, Buildings, id)
+}
+
+one(Organization, Users, 'r')
+
+many(Buildings, Users, 'u')
+
+left_join(Users, Organization, Users.function_id, Organization.id, j1, Users)
+
+left_join(j1, Buildings, Users.office_id, Buildings.id, j2)
+
+view(Report) {
+    {field} full_name: varchar(255)
+    {field} function: varchar(20)
+    {field} function: varchar(255)
+    comment(ORDER BY full_name)
+}
+
+j2 <|- Report : SELECT
+
+@enduml

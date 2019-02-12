@@ -1,0 +1,12 @@
+@startuml classes_attributes
+
+!include ../../Classes.cuml
+
+class MyClass {
+    # abstract(VirtualMethod) : int -> None
+    + static_method(StaticMethod) : float -> str
+}
+
+MyClass : - static_field(Accounts) : list(int)
+
+@enduml

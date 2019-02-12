@@ -37,3 +37,7 @@ All templates are defined in the folder **Templates**
 
 * [Source](./components_example/components_example.pu)
 * [Rendered](./components_example/components_example.png)
+
+## Documentation
+
+* [User Manual](./Documentation/user_manual.md)

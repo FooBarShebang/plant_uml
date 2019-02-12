@@ -1,0 +1,7 @@
+@startuml general_generated
+
+!include ../../General.cuml
+
+title GENERATED
+
+@enduml
