@@ -67,7 +67,7 @@ The implemented macroses are grouped into the separate '.cuml' modules by their 
 | -------------- | ----------------------- |
 | REQ-SIO-F002   | Software Modules Format |
 | REQ-USE-U001   | Mode of Operation       |
-| REQ-IAR-I001   | Installation process    |
+| REQ-IAR-I001   | Installation Process    |
 | REQ-UDR-D001   | User Manual             |
 | REQ-UDR-D002   | Inline Documentation    |
 
@@ -100,7 +100,7 @@ This module defines parametric macroses (as functions) to create specific non-st
 
 ### Tables.cuml
 
-This module provides marcoses to create the database graphical data model representatons based on the modified UML class diagrams, as in the figure below. It implements representation of the database objects (tables, views, etc.) based upon decorated class representation, attributes decorators for emphasizing the primary and foreign keys, and the relational links between the objects.
+This module provides macroses to create the database graphical data model representatons based on the modified UML class diagrams, as in the figure below. It implements representation of the database objects (tables, views, etc.) based upon decorated class representation, attributes decorators for emphasizing the primary and foreign keys, and the relational links between the objects.
 
 ![tables_joins.png](./Images/tables_joins.png)
 
