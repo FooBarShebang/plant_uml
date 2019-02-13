@@ -1,0 +1,24 @@
+@startuml system_overview
+
+!include ../../Components.cuml
+
+pc('User Machine', PC) {
+    component PlantUML
+    component "Text editor\nor IDE" as IDE
+    component plant_uml
+    component "source code" as Source
+    
+    IDE -- Source
+    
+    PlantUML <|-- plant_uml
+    
+    Source - plant_uml
+    
+    PlantUML -- Source
+}
+
+actor User
+
+PC - User
+
+@enduml

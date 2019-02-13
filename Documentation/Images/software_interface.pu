@@ -1,0 +1,47 @@
+@startuml software_interface
+
+rectangle Rendering {
+    usecase "Rendering to a file" as FR
+    
+    usecase "Rendering a preview" as PR
+}
+
+usecase Processing
+
+FR --|> Processing
+
+PR --|> Processing
+
+rectangle Preprocessing {
+    usecase "Macroses expansion" as ME
+    
+    usecase "Modules inclusion" as Import
+    
+    ME --|> Import
+}
+
+Processing --|> ME
+
+usecase Coding
+
+Import --|> Coding
+
+actor PlantUML <<Software>>
+
+Rendering -- PlantUML
+
+PlantUML -- Preprocessing
+
+PlantUML - Processing
+
+actor plant_uml <<Software>>
+
+ME -- plant_uml
+
+plant_uml -- Coding
+
+actor User <<Human>>
+
+User - Coding
+
+@enduml

@@ -1,0 +1,23 @@
+@startuml plant_uml_components
+
+!include ../../Components.cuml
+
+library(plant_uml) {
+    folder class_example
+    
+    folder components_example
+    
+    folder database_example
+    
+    folder Documentation
+    
+    module(Classes.cuml)
+    
+    module(Components.cuml)
+    
+    module(Tables.cuml)
+    
+    module(General.cuml)
+}
+
+@enduml
