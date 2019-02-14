@@ -54,7 +54,7 @@ This module defines generic macroses, which can be used with any type of the Pla
 
 ### GENERATED
 
-*Description*: Creates the current date and time stamp (compilation / rendering time) in the format 'Generated on YYYY.MM.DD at hh:mm' foramt.
+*Description*: Creates the current date and time stamp (compilation / rendering time) in the format 'Generated on YYYY.MM.DD at hh:mm' format.
 
 *Usage*: Insert the macros GENERATED into any text to be displayed in the diagram.
 
@@ -365,7 +365,7 @@ MyClass : - static_field(Accounts) : list(int)
 
 ## Module Tables.cuml
 
-Provides marcoses to create the database` graphical data model representatons based on the modified UML class diagrams.
+Provides macroses to create the database` graphical data model representatons based on the modified UML class diagrams.
 
 ### Tables, Views, etc. - class based elements
 
@@ -463,7 +463,7 @@ table(Users) {
 
 ### comment()
 
-*Definition*: Parametric macros with a single agrument (string), whihc is forecefully placed into the 'methods' section of an entity based upon class, whereas all fields (of a table or view) are placed into the 'fields' section. Designed for the placement of the actual comments into the tables and 'WHERE ...', 'ORDER BY ...', etc. clauses of the queries, views, etc.
+*Definition*: Parametric macros with a single agrument (string), which is forcefully placed into the 'methods' section of an entity based upon class, whereas all fields (of a table or view) are placed into the 'fields' section. Designed for the placement of the actual comments into the tables and 'WHERE ...', 'ORDER BY ...', etc. clauses of the queries, views, etc.
 
 *Usage*: This macros is to be used as part of the class-based entity definition within the {} brakets, see *Example*
 
