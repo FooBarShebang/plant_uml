@@ -10,4 +10,4 @@ Re-organized structure to fit better the submodule approach. Added key and link 
 
 ## 2020-01-22 Version 0.1.0.1
 
-Migrated the repository to GitLab
+Migrated the repository to GitLab. Note: all repositories using this repository as submodule must change the corresponding URL.
