@@ -38,6 +38,6 @@ All templates are defined in the folder **Templates**
 
 * [User Manual](./Documentation/user_manual.md)
 * Technical documentation
-  - [Requirements document](./Documentation/requirements.md)
-  - [Design](./Documentation/design.md)
-  - [Test report](./Documentation/test_report.md)
+  * [Requirements document](./Documentation/requirements.md)
+  * [Design](./Documentation/design.md)
+  * [Test report](./Documentation/test_report.md)
