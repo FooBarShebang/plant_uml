@@ -4,6 +4,10 @@ A set of templates (as macro / preprocessor directives) for the commonly used (i
 
 NOTE: the entire approach is based upon "!include" preprocessor directive, which may not work correctly depending on the local Java installation / RTE environmental variables. In the conducted, though limited, testing no issues are found with the stand-alone application (plantuml.jar) nor with VS Code (using PlantUML plug-in by jebbs, v2.10.3). With the Eclipse IDE (Neon and later, e.g. 2018-12) the preview is generated properly, but the rendering into files is broken (both on Linux and Windows 8 / 10 OSes).
 
+## Note on the future changes
+
+The syntax of the preprocessor directives has been greatly enhanced and changed. In order to address these changes without breaking the old syntax based work in other projects using this one the changes will be implemented as separate templates files.
+
 ## Structure
 
 All templates are defined in the folder **Templates**
