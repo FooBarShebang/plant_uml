@@ -14,8 +14,8 @@ Basically, the same functionality using the current syntax is implemented in the
 
 * [Classes2.cuml](./Classes2.cuml)
 * [Components2.cuml](./Components2.cuml)
-* [General2.cuml](./General.cuml)
-* [Tables2.cuml](./Tables.cuml)
+* [General2.cuml](./General2.cuml)
+* [Tables2.cuml](./Tables2.cuml)
 
 ### Legacy preprocessor implementation
 
@@ -28,22 +28,32 @@ Basically, the same functionality using the current syntax is implemented in the
 
 ### Class Diagram
 
-* [Source](./class_example/class_example.pu)
-* [Rendered](./class_example/class_example.png)
+* Current preprocessor (v2)
+  * [Source](./class_example/class2_example.pu)
+  * [Rendered](./class_example/class2_example.png)
+* Legacy preprocessor
+  * [Source](./class_example/class_example.pu)
+  * [Rendered](./class_example/class_example.png)
 
 ### Database Description Using Class Diagram
 
-* [Source](./database_example/standards_constructions_view.pu)
+Current preprocessor only
+
+* View and joins (nested) [Source](./database_example/standards_constructions_view.pu)
 * [Rendered](./database_example/standards_constructions_view.png)
-* [Source](./database_example/standards_materials_view.pu)
+* View and joins (simpler) [Source](./database_example/standards_materials_view.pu)
 * [Rendered](./database_example/standards_materials_view.png)
-* [Source](./database_example/standards_schema.pu)
+* Tables [Source](./database_example/standards_schema.pu)
 * [Rendered](./database_example/standards_schema.png)
 
 ### Components Diagram
 
-* [Source](./components_example/components_example.pu)
-* [Rendered](./components_example/components_example.png)
+* Current preprocessor (v2)
+  * [Source](./components_example/components2_example.pu)
+  * [Rendered](./components_example/components2_example.png)
+* Legacy preprocessor
+  * [Source](./components_example/components_example.pu)
+  * [Rendered](./components_example/components_example.png)
 
 ## Documentation
 
