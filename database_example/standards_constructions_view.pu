@@ -2,41 +2,41 @@
 
 title standards.constructions_view
 
-!define STANDARDS_MATERIALS_VIEW
+!$STANDARDS_MATERIALS_VIEW = "v2"
 
-!ifndef TABLES
-!include ../Tables.cuml
+!if (%not(%variable_exists($TABLES)))
+    !include ../Tables2.cuml
 !endif
 
-!ifndef STANDARDS_PARTS
-!include ./standards_parts.iuml
+!if $is_not_defined($STANDARDS_PARTS)
+    !include ./standards_parts.iuml
 !endif
 
-!ifndef STANDARDS_MATERIALS
-!include ./standards_materials.iuml
+!if $is_not_defined($STANDARDS_MATERIALS)
+    !include ./standards_materials.iuml
 !endif
 
-many(materials, parts, u)
+$many(materials, parts, u)
 
-!ifndef STANDARDS_CONSTRUCTIONS
-!include ./standards_constructions.iuml
+!if $is_not_defined($STANDARDS_CONSTRUCTIONS)
+    !include ./standards_constructions.iuml
 !endif
 
-many(constructions, parts, r)
+$many(constructions, parts, r)
 
-!ifndef STANDARDS_MATERIAL_TYPES
-!include ./standards_material_types.iuml
+!if $is_not_defined($STANDARDS_MATERIAL_TYPES)
+    !include ./standards_material_types.iuml
 !endif
 
-many(material_types, materials, u)
+$many(material_types, materials, u)
 
-left_join(parts, constructions, parts.construction_id, constructions.id, j1, parts)
+$left_join(parts, constructions, j1, parts, "parts.construction_id = constructions.id")
 
-left_join(j1, materials, parts.material_id, materials.id, j2)
+$left_join(j1, materials, j2, $condition = "parts.material_id = materials.id")
 
-left_join(j2, material_types, material_type.id, material_types.id, j3)
+$left_join(j2, material_types, j3, $condition = ", material_type.id = material_types.id")
 
-view(constructions_view) {
+$view(constructions_view) {
     {field} constructions.name AS construction: varchar(10) NOT NULL
     {field} constructions.comment AS description: varchar(255)
     {field} material_types.name AS part: varchar(20)

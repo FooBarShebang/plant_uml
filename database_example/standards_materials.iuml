@@ -1,18 +1,18 @@
-!define STANDARDS_MATERIALS
+!$STANDARDS_MATERIALS = "v2"
 
-!ifndef TABLES
-!include ../Tables.cuml
+!if (%not(%variable_exists($TABLES)))
+    !include ../Tables2.cuml
 !endif
 
-enumeration(materials) {
-    primary(id)
+$enumeration(materials) {
+    $primary(id)
     {field} name: varchar(20) UNIQUE NOT NULL
-    foreign(material_type_id, material_types, id)
-    !ifndef HIDE
+    $foreign(material_type_id, material_types, id)
+    !if $is_not_hide()
         {field} producer: varchar(20)
         {field} provider: varchar(20)
         {field} comment: varchar(255)
         {field} registration_path: varchar(255)
-        comment(materials used as parts of standards)
+        $comment("materials used as parts of standards")
     !endif
 }

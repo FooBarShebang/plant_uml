@@ -8,9 +8,13 @@ This document presents the software design for plant_uml library. The design is 
 
 Initial version.
 
+### 20201-01-18 Revision 1 - version 1.0.0.0 (2021-01-18)
+
+Added the PlantUML preprocessor based functionality in addition to the legacy code. The requirements are not changed.
+
 ## System overview
 
-The plant_uml library is intended to be the plug-in style extention to the PlantUML syntax. It implements a set of macroses, which provide shorter and clearer syntax (as a *syntax sugar*) for the specific PlantUML constructs, which are often used during the creation of UML diagrams for the documentation of Python written software and relational databases data model. These macroses are expanded into the standard syntax constructs during the pre-processing stage by the PlantUML software itself. Thus the plant_uml library does not generate any data or perform any calculations on its own. Strictly speaking, it is not even executed.
+The plant_uml library is intended to be the plug-in style extention to the PlantUML syntax. It implements a set of macroses (as variables, procedures and functions), which provide shorter and clearer syntax (as a *syntax sugar*) for the specific PlantUML constructs, which are often used during the creation of UML diagrams for the documentation of Python written software and relational databases data model. These macroses are expanded into the standard syntax constructs during the pre-processing stage by the PlantUML software itself. Thus the plant_uml library does not generate any data or perform any calculations on its own. Strictly speaking, it is not even executed.
 
 In order to use the added functionality of the plant_uml library the user should reference in the source code of his diagram the module containing the requied macroses (using PlantUML !include directive) first. After that he can insert any of the macroses defined in that module into his PlantUML source code.
 
@@ -18,7 +22,7 @@ The relationship of the plant_uml library with the other components involved in 
 
 ![system_overview.png](./Images/system_overview.png)
 
-**Related requirements**
+**Related requirements**:
 
 | Requirement ID | Requirement name         |
 | -------------- | ------------------------ |
@@ -39,7 +43,7 @@ Note that the incorrect syntax resulting from the invalid user input or improper
 
 ![software_interface.png](./Images/software_interface.png)
 
-**Related requirements**
+**Related requirements**:
 
 | Requirement ID | Requirement name         |
 | -------------- | ------------------------ |
@@ -59,9 +63,9 @@ The operational part of the library, which implements the added functionality, c
 
 ![plant_uml_components.png](./Images/plant_uml_components.png)
 
-The implemented macroses are grouped into the separate '.cuml' modules by their specific intended use, as discussed below.
+The implemented macroses are grouped into the separate '.cuml' modules by their specific intended use, as discussed below. The '.cuml' modules with '2' in their names are the implementation based on the current PlantUML preprocessor syntax. The '.cuml' modules without '2' in their names are the legacy PlantUML preprocessor based implementation.
 
-**Related requirements**
+**Related requirements**:
 
 | Requirement ID | Requirement name        |
 | -------------- | ----------------------- |
@@ -71,40 +75,61 @@ The implemented macroses are grouped into the separate '.cuml' modules by their 
 | REQ-UDR-D001   | User Manual             |
 | REQ-UDR-D002   | Inline Documentation    |
 
-### Classes.cuml
+### Classes.cuml / Classes2.cuml
+
+**Legacy syntax**:
 
 This module defines non-parametric (as constants) and parameteric macroses (as functions) to be used in the UML class diagrams. Specifically, the decorators for the class stereotype and attributes. The class decorators provide custom stereotype strings and 'badges' (letters in the coloured circles), thus the diffent types of the classes can be easily distinguished. The attributes decorators provide better indication of the static / abstract attributes than the standard {static} and {abstract} modifiers by emphasizing only the attribute's name and not the entire definition line. See examples below.
 
 | ![classes_stereotypes.png](./Images/classes_stereotypes.png) | ![classes_attributes.png](./Images/classes_attributes.png) |
 | --- | --- |
 
-**Related requirements**
+**New syntax**:
+
+The entire class definition as `class Name <<(Letter, Colour) Stereotype>>` or `class Name <<(Letter, Colour) Stereotype>> as Alias` is implemented as an unquoted parametric procedure, e.g. `$mixin_class($name, $alias = "")`. The class long name aliasing is supported via the keyword parameter.
+
+The `{static}` decorator for fields (data attributes) is implemented as an unquoted parametric procedure, whereas the `{static}` and `{abstract}` decorators for the methods are implemented as quoted procedure, e.g. `$abstract_method("count", "a, b ,c")`, thus the arguments can be passed as single string as the second parameter.
+
+**Related requirements**:
 
 | Requirement ID | Requirement name                    |
 | -------------- | ----------------------------------- |
 | REQ-FUN-F002   | Class Diagram Classes Stereotypes   |
 | REQ-FUN-F003   | Class Diagram Attributes Decorators |
 
-### Components.cuml
+### Components.cuml / Components2.cuml
+
+**Legacy syntax**:
 
 This module defines parametric macroses (as functions) to create specific non-standard components of the UML components diagrams. They are based on the standard components of the PlantUML components diagram and add custom stereotypes, as shown below.
 
-| ![components_class.png](./Images/components_class.png) | ![components_library.png](./Images/components_library.png) | ![components_pc.png](./Images/components_pc.png) |
-| --- | --- | --- |
+| ![components_class.png](./Images/components_class.png) | ![components_pc.png](./Images/components_pc.png) |
+| --- | --- |
+| ![components_package.png](./Images/components_package.png) | ![components_library.png](./Images/components_library.png) |
 
-**Related requirements**
+**New syntax**:
+
+The entire functionality is implemented via unquoted parameteric procedures. The long names aliasing is supported via the keyword parameter.
+
+**Related requirements**:
 
 | Requirement ID | Requirement name                    |
 | -------------- | ----------------------------------- |
 | REQ-FUN-F004   | Component Diagram Custom Components |
 
-### Tables.cuml
+### Tables.cuml / Tables2.cuml
+
+**Legacy syntax**:
 
 This module provides macroses to create the database graphical data model representatons based on the modified UML class diagrams, as in the figure below. It implements representation of the database objects (tables, views, etc.) based upon decorated class representation, attributes decorators for emphasizing the primary and foreign keys, and the relational links between the objects.
 
 ![tables_joins.png](./Images/tables_joins.png)
 
-**Related requirements**
+**New syntax**:
+
+All functionality is implemented in form of parametric unquoted procedures. In case of the joins the condition must be passed as a single quoted string, e.g. `"table1.field1 = table2.field2"` instead of two unquoted parameters `table1.field1, table2.field2`. With this approach more flexible conditional forming is provided, instead of equality of two fields only.
+
+**Related requirements**:
 
 | Requirement ID | Requirement name                              |
 | -------------- | --------------------------------------------- |
@@ -114,13 +139,25 @@ This module provides macroses to create the database graphical data model repres
 | REQ-FUN-F008   | Naming of the Objects                         |
 | REQ-FUN-F009   | Primary and Foreign Keys                      |
 
-### General.cuml
+### General.cuml / General2.cuml
+
+**Legacy syntax**:
 
 This module is designed as a placeholder for generic macroses, wich can be used with any type of the PlantUML supported diagrams. For instance, a user may define some project-global constants in this module, like the project name, current version number, etc., which can be referenced across the entire project.
 
 This module is not considered in the [software requirements](./requirements.md), because it does not provide any essential functionality. Currently, it implements a single non-parameteric marcos **GENERATED**, which is expanded at the rendering time into the current date and time stamp in the following format:
 
 ![general_generated.png](./Images/general_generated.png)
+
+**New syntax**:
+
+The functionality of the macros `GENERATED` is re-implemented via a non-parametric procedure `$generated_()`.
+
+Added parametric function `$is_not_defined($var)` as a short-hand for `%not(%variable_exists($var))`. The name of the variable to check should be passed in double quotes, e.g. `$is_not_defined("$CLASSES")`.
+
+Added non-parameteric procedures to set / unset the global boolean flag `$HIDE`, i.e. `$set_hide()` and `unset_hide()`; as well as non-parameteric functions `is_hide()` and `is_not_hide()` to check its value. If this global flag is not defined, it is considered to be not set.
+
+**Note**: this module is automatically imported by the modules Classes2.cuml, Components2.cuml and Tables2.cuml.
 
 ## Software architecture verification plan
 

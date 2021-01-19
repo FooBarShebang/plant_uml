@@ -1,21 +1,21 @@
-!define STANDARDS_SERIALS
+!$STANDARDS_SERIALS = "v2"
 
-!ifndef TABLES
-!include ../Tables.cuml
+!if $is_not_defined("$TABLES")
+    !include ../Tables2.cuml
 !endif
 
-table(serials) {
-    primary(id)
+$table(serials) {
+    $primary(id)
     {field} name: varchar(10) UNIQUE NOT NULL
-    !ifndef HIDE
+    !if $is_not_hide()
         is_active: bool NOT NULL DEFAULT FALSE
         calibration_id: smallint
         calibration_date: date NOT NULL
     !endif
-    foreign(type_id,types,id)
-    foreign(user_id,subjects.users,id)
-    foreign(construction_id,constructions,id)
-    !ifndef HIDE
-        comment(main table for standards registration)
+    $foreign(type_id,types,id)
+    $foreign(user_id,subjects.users,id)
+    $foreign(construction_id,constructions,id)
+    !if $is_not_hide()
+        $comment("main table for standards registration")
     !endif
 }

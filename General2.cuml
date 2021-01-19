@@ -1,0 +1,38 @@
+/' generic diagrams '/
+
+!$GENERAL = "v2"
+
+/' Generates a date-time stamp.
+May not work properly depending on the Java installation / RTE environment
+variables: e.g. it does "work out of the box" with PlantUML plug-in for Eclipse
+in Windows, but not in Linux, neither is works with PlantUML.jar directly.'/
+
+!procedure $generated()
+    %date("'Generated on' yyyy.MM.dd 'at' HH:MM")
+!endprocedure
+
+/' alternative to !includesub '/
+
+!function $is_not_defined($var)
+    !return %not(%variable_exists($var))
+!endfunction
+
+!procedure $set_hide()
+    !global $HIDE = %true()
+!endprocedure
+
+!procedure $unset_hide()
+    !global $HIDE = %false()
+!endprocedure
+
+!function $is_hide()
+    !if $is_not_defined("$HIDE")
+        !return %false()
+    !else
+        !return $HIDE
+    !endif
+!endfunction
+
+!function $is_not_hide()
+    !return %not($is_hide())
+!endfunction

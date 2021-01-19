@@ -1,21 +1,28 @@
 # PlantUML Templates
 
-A set of templates (as macro / preprocessor directives) for the commonly used (in my personal experience - Anton Azarov) tasks in creating UML diagrams using PlantUML mark-up language.
+A set of templates (as macro / preprocessor directives, i.e. functions, procedures and variables) for the commonly used (in my personal experience - Anton Azarov) tasks in creating UML diagrams using PlantUML mark-up language.
 
-NOTE: the entire approach is based upon "!include" preprocessor directive, which may not work correctly depending on the local Java installation / RTE environmental variables. In the conducted, though limited, testing no issues are found with the stand-alone application (plantuml.jar) nor with VS Code (using PlantUML plug-in by jebbs, v2.10.3). With the Eclipse IDE (Neon and later, e.g. 2018-12) the preview is generated properly, but the rendering into files is broken (both on Linux and Windows 8 / 10 OSes).
+Version: 1.0.0.0
 
-## Note on the future changes
+## Legacy and modern PlantUML processor syntax support
 
-The syntax of the preprocessor directives has been greatly enhanced and changed. In order to address these changes without breaking the old syntax based work in other projects using this one the changes will be implemented as separate templates files.
+The syntax of the preprocessor directives has been greatly enhanced and changed. In order to address these changes without breaking the old syntax based work in other projects using this one the changes are implemented as separate templates files.
+
+Basically, the same functionality using the current syntax is implemented in the template '.cuml' files with the same names as the legacy syntax but with '2' suffix in the name.
 
 ## Structure
 
-All templates are defined in the folder **Templates**
+* [Classes2.cuml](./Classes2.cuml)
+* [Components2.cuml](./Components2.cuml)
+* [General2.cuml](./General.cuml)
+* [Tables2.cuml](./Tables.cuml)
 
-* [Classes.cuml](./Templates/Classes.cuml)
-* [Components.cuml](./Templates/Components.cuml)
-* [General.cuml](./Templates/General.cuml)
-* [Tables.cuml](./Templates/Tables.cuml)
+### Legacy preprocessor implementation
+
+* [Classes.cuml](./Classes.cuml)
+* [Components.cuml](./Components.cuml)
+* [General.cuml](./General.cuml)
+* [Tables.cuml](./Tables.cuml)
 
 ## Examples
 

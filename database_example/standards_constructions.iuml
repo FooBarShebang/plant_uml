@@ -1,19 +1,19 @@
-!define STANDARDS_CONSTRUCTIONs
+!$STANDARDS_CONSTRUCTIONS = "v2"
 
-!ifndef TABLES
-!include ../Tables.cuml
+!if (%not(%variable_exists($TABLES)))
+    !include ../Tables2.cuml
 !endif
 
-enumeration(constructions) {
-    primary(id)
+$enumeration(constructions) {
+    $primary(id)
     {field} name: varchar(10) UNIQUE NOT NULL
-    !ifndef HIDE
+    !if $is_not_hide()
         {field} comment: varchar(255)
         can_fluorescence: bool NOT NULL DEFAULT FALSE
         can_reflectance: bool NOT NULL DEFAULT FALSE
         can_both: bool NOT NULL DEFAULT FALSE
         is_active: bool NOT NULL DEFAULT FALSE
         {field} registration_path: varchar(255)
-        comment(main construction properties)
+        $comment("main construction properties")
     !endif
 }

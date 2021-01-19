@@ -1,8 +1,8 @@
 @startuml system_overview
 
-!include ../../Components.cuml
+!include ../../Components2.cuml
 
-pc('User Machine', PC) {
+$pc(User Machine, PC) {
     component PlantUML
     component "Text editor\nor IDE" as IDE
     component plant_uml

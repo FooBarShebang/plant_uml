@@ -1,0 +1,179 @@
+/' for database modeling using modified class diagrams '/
+
+!$TABLES = "v2"
+
+!if (%not(%variable_exists("$GENERAL")))
+    !include ./General2.cuml
+!endif
+
+/' stereotypes & decorations '/
+
+!unquoted procedure $table($name)
+    class $name <<(T,#FFAAAA) Table>>
+!endprocedure
+
+!unquoted procedure $enumeration($name)
+    class $name <<(E, lightblue) EnumTable>>
+!endprocedure
+
+!unquoted procedure $sequence($name)
+    class $name <<(S, red) Sequence>>
+!endprocedure
+
+!unquoted procedure $index($name)
+    class $name <<(I, orange) Index>>
+!endprocedure
+
+!unquoted procedure $view($name)
+    class $name <<(V, violet) View>>
+!endprocedure
+
+!unquoted procedure $query($name, $display_name = " ")
+    class "$display_name" as $name <<(Q, violet) Query>>
+!endprocedure
+
+/' field constrains '/
+
+!unquoted procedure $primary($name)
+    {field} <&key><u><b>$name</b></u> : serial NOT NULL PRIMARY KEY
+!endprocedure
+
+!unquoted procedure $small_primary($name)
+    {field} <&key><u><b>$name</b></u> : smallserial NOT NULL PRIMARY KEY
+!endprocedure
+
+/' foreign key single field to single field, 1 to many OR 1 to 1 (unique)
+relation.
+first parameter - local table field's name, which references
+second parameter - name of the referenced table
+third parameter - name of the referenced field in the referenced table
+i.e. $name REFERENCES $ref_table.$ref_field
+'/
+
+!unquoted procedure $foreign($name, $ref_field, $ref_table)
+    {field} <&link-intact><i><b>$name</b></i> : integer NOT NULL REFERENCES <b>$ref_table.$ref_field</b>
+!endprocedure
+
+!unquoted procedure $small_foreign($name, $ref_field, $ref_table)
+    {field} <&link-intact><i><b>$name</b></i> : smallint NOT NULL REFERENCES <b>$ref_table.$ref_field</b>
+!endprocedure
+
+!unquoted procedure $unique_foreign($name, $ref_field, $ref_table)
+    {field} <&link-intact><i><b>$name</b></i> : integer UNIQUE NOT NULL REFERENCES <b>$ref_table.$ref_field</b>
+!endprocedure
+
+!unquoted procedure $small_unique_foreign($name, $ref_field, $ref_table)
+    {field} <&link-intact><i><b>$name</b></i> : smallint UNIQUE NOT NULL REFERENCES <b>$ref_table.$ref_field</b>
+!endprocedure
+
+!procedure $comment($data)
+    {method} $data
+!endprocedure
+
+/' relations between the tables as "1 to 1" and "1 to many"
+first parameter - name of the source table (always 1)
+second parameter - name of the target table (many or 1)
+third parameter (optional) - direction of drawing from the source to the target,
+defaults to 'd' (as down)
+e.g. $reference "1" -$direction- "*" $dependance OR 
+$reference "1" .$direction. "1" $dependance
+'/
+
+!unquoted procedure $one($reference, $dependance, $direction = "d")
+    $reference "1" -$direction- "1" $dependance
+!endprocedure
+
+!unquoted procedure $one_dot($reference, $dependance, $direction = "d")
+    $reference "1" .$direction. "1" $dependance
+!endprocedure
+
+!unquoted procedure $many($reference, $dependance, $direction = "d")
+    $reference "1" -$direction- "*" $dependance
+!endprocedure
+
+!unquoted procedure $many_dot($reference, $dependance, $direction = "d")
+    $reference "1" .$direction. "*" $dependance
+!endprocedure
+
+/' macroses to create a representation of the JOIN, UNION, INTERSECT and EXCEPT
+relations of two tables and to graphically link the created object to the LEFT
+and RIGHT tables.
+
+first parameter ($left) - single token as reference to the LEFT table
+second parameter ($right) - single token as reference to the RIGHT table - always
+indicated in the SQL definition
+third paremeter ($name) - reference (single token) to be used for the created JOIN
+object (not shown in the diagram!)
+fourth parameter ($display_left, optional, defaults to an empty string) - name
+to be indicated as the LEFT part of the relation. Either leave it empty (for
+compound / nested relations), or use the same value as the first argument
+($left) - for the first relation in the chain, e.g.
+$display_left CROSS JOIN $right '
+optional fifth parameter (for joins, except $cross_join - $condition) - double
+quoted conditional cause (ON ...)
+'/
+
+/' not for import! '/
+
+!procedure $relation($type, $stereotype, $left, $right, $name, $display_left = "", $condition = "")
+    class " " as $name <<$stereotype>> {
+        !if ($display_left == "")
+            {field} <b>$type</b> $right
+        !else
+            {field} $display_left <b>$type</b> $right
+        !endif
+        !if (%not($condition == ""))
+            {field} <b>ON</b> $condition
+        !endif
+    }
+
+    $left --* "L" $name
+
+    $right --* "R" $name
+!endprocedure
+
+/' actual for import! '/
+
+!unquoted procedure $cross_join($left, $right, $name, $display_left = "")
+    ' $relation("CROSS JOIN", "(J, pink) CROSS JOIN", $left, $right, $name, $display_left)
+!endprocedure
+
+!unquoted procedure $inner_join($left, $right, $name, $display_left = "", , $condition = "")
+    ' $relation("INNER JOIN", "(J, pink) INNER JOIN", $left, $right, $name, $display_left, $condition)
+!endprocedure
+
+!unquoted procedure $left_join($left, $right, $name, $display_left = "", $condition = "")
+    $relation("LEFT OUTER JOIN", "(J, pink) LEFT JOIN", $left, $right, $name, $display_left, $condition)
+!endprocedure
+
+!unquoted procedure $right_join($left, $right, $name, $display_left = "", , $condition = "")
+    $relation("RIGHT OUTER JOIN", "(J, pink) RIGHT JOIN", $left, $right, $name, $display_left, $condition)
+!endprocedure
+
+!unquoted procedure $full_join($left, $right, $name, $display_left = "", , $condition = "")
+    $relation("FULL OUTER JOIN", "(J, pink) FULL JOIN", $left, $right, $name, $display_left, $condition)
+!endprocedure
+
+!unquoted procedure $union($left, $right, $name, $display_left = "")
+    $relation("UNION", "(U, violet) UNION", $left, $right, $name, $display_left)
+!endprocedure
+
+!unquoted procedure $union_all($left, $right, $name, $display_left = "")
+    $relation("UNION ALL", "(U, violet) UNION ALL", $left, $right, $name, $display_left)
+!endprocedure
+
+!unquoted procedure $intersect($left, $right, $name, $display_left = "")
+    $relation("INTERSECT", "(I, violet) INTERSECT", $left, $right, $name, $display_left)
+!endprocedure
+
+!unquoted procedure $intersect_all($left, $right, $name, $display_left = "")
+    $relation("INTERSECT ALL", "(I, violet) INTERSECT ALL", $left, $right, $name, $display_left)
+!endprocedure
+
+!unquoted procedure $except($left, $right, $name, $display_left = "")
+    $relation("EXCEPT", "(E, violet) EXCEPT", $left, $right, $name, $display_left)
+!endprocedure
+
+!unquoted procedure $except_all($left, $right, $name, $display_left = "")
+    $relation("EXCEPT ALL", "(E, violet) EXCEPT ALL", $left, $right, $name, $display_left)
+!endprocedure

@@ -1,17 +1,17 @@
-!define SUBJECTS_USERS
+!$SUBJECTS_USERS = "v2"
 
-!ifndef TABLES
-!include ../Tables.cuml
+!if (%not(%variable_exists("$TABLES")))
+    !include ../Tables2.cuml
 !endif
 
-table(users) {
-    primary(id)
+$table(users) {
+    $primary(id)
     {field} name: varchar(20) UNIQUE NOT NULL
-    !ifndef HIDE
+    !if $is_not_hide()
         {field} full_name: varchar(255)
         {field} address: varchar(255)
         {field} "e-mail": varchar(50)
         {field} phone: varchar(20)
-        comment(companies as users)
+        $comment("companies as users")
     !endif
 }

@@ -1,17 +1,17 @@
 @startuml tables_comment
 
-!include ../../Tables.cuml
+!include ../../Tables2.cuml
 
-table(MyTable) {
+$table(MyTable) {
     id_value : integer
     is_active: bool
-    comment('some simple table for the unknown purposes')
+    $comment("some simple table for the unknown purposes")
 }
 
-view(MyView) {
+$view(MyView) {
     id_value : integer
-    comment('WHERE is_active IS true')
-    comment('ORDER BY id_value')
+    $comment("WHERE is_active IS true")
+    $comment("ORDER BY id_value")
 }
 
 MyTable <|-- MyView : SELECT

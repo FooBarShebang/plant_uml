@@ -8,6 +8,10 @@ This document presents the software requirements specifications for this library
 
 Initial version.
 
+### 20201-01-18 Revision 1 - version 1.0.0.0 (2021-01-18)
+
+Added the PlantUML preprocessor based functionality in addition to the legacy code. The requirements are not changed.
+
 ## Conventions
 
 ### Verification methods
@@ -103,8 +107,8 @@ These requirements describe the functional requirements of the product that is t
 * Tables
 * Views
 * Queries (as parts of the complex SELECT constructs, e.g. for the views creation), including the special cases of
-  - Joins
-  - Set operations: union, intersection, exception
+  * Joins
+  * Set operations: union, intersection, exception
 
 These representations should be based on the class template with the specific and clear indication of their type using the letter in the coloured circle and stereotypes.
 

@@ -1,0 +1,73 @@
+/' for class diagrams using new PlantUML preprocessor'/
+
+!$CLASSES = "v2"
+
+!if %not(%variable_exists("$GENERAL"))
+    !include ./General2.cuml
+!endif
+
+/' stereotypes & decorations '/
+
+!unquoted procedure $mixin_class($name, $alias = "")
+    !if ($alias == "")
+        class $name <<(M, lightblue) Mixin>>
+    !else
+        class $name <<(M, lightblue) Mixin>> as $alias
+    !endif
+!endprocedure
+
+!unquoted procedure $left_mixin_class($name, $alias = "")
+    !if ($alias == "")
+        class $name <<(M, lightblue) Left Mixin>>
+    !else
+        class $name <<(M, lightblue) Left Mixin>> as $alias
+    !endif
+!endprocedure
+
+!unquoted procedure $right_mixin_class($name, $alias = "")
+    !if ($alias == "")
+        class $name <<(M, lightblue) Right Mixin>>
+    !else
+        class $name <<(M, lightblue) Right Mixin>> as $alias
+    !endif
+!endprocedure
+
+!unquoted procedure $prototype_class($name, $alias = "")
+    !if ($alias == "")
+        class $name <<(P, violet) Prototype>>
+    !else
+        class $name <<(P, violet) Prototype>> as $alias
+    !endif
+!endprocedure
+
+!unquoted procedure $singleton_class($name, $alias = "")
+    !if ($alias == "")
+        class $name <<(S, orange) Singleton>>
+    !else
+        class $name <<(S, orange) Singleton>> as $alias
+    !endif
+!endprocedure
+
+!unquoted procedure $generic_class($name, $alias = "")
+    !if ($alias == "")
+        class $name <<(G, red) Generic>>
+    !else
+        class $name <<(G, red) Generic>> as $alias
+    !endif
+!endprocedure
+
+/' alternative to {static} decorator'/
+
+!unquoted procedure $static_field($name)
+    {field} <u>$name</u>
+!endprocedure
+
+!procedure $static_method($name, $args = "")
+    <u>$name(</u>$args<u>)</u>
+!endprocedure
+
+/' alternative to {abstract} decorator '/
+
+!procedure $abstract_method($name, $args = "")
+    <i>$name(</i>$args<i>)</i>
+!endprocedure

@@ -1,13 +1,13 @@
-!define STANDARDS_MATERIAL_TYPES
+!$STANDARDS_MATERIAL_TYPES = "v2"
 
-!ifndef TABLES
-!include ../Tables.cuml
+!if (%not(%variable_exists($TABLES)))
+    !include ../Tables2.cuml
 !endif
 
-enumeration(material_types) {
-    primary(id)
+$enumeration(material_types) {
+    $primary(id)
     {field} name: varchar(20) UNIQUE NOT NULL
-    !ifndef HIDE
-        comment("material types, e.g. flourophore, etc.")
+    !if $is_not_hide()
+        $comment("material types, e.g. flourophore, etc.")
     !endif
 }

@@ -1,96 +1,93 @@
 @startuml standards_schema
 
-!define STANDARDS_SCHEMA
+!$STANDARDS_SCHEMA = "v2"
 
-!ifndef TABLES
-!include ../Tables.cuml
+!if (%not(%variable_exists("$TABLES")))
+    !include ../Tables2.cuml
 !endif
 
-!ifndef STANDARDS_CHNAGE_TYPES
-!include ./standards_change_types.iuml
+!include ../General2.cuml
+
+!if $is_not_defined("$STANDARDS_CHNAGE_TYPES")
+    !include ./standards_change_types.iuml
 !endif
 
-!ifndef STANDARDS_CHANGES
-!include ./standards_changes.iuml
+!if $is_not_defined("$STANDARDS_CHANGES")
+    !include ./standards_changes.iuml
 !endif
 
-many(change_types, changes, u)
+$many(change_types, changes, u)
 
-!ifndef STANDARDS_MATERIAL_TYPES
-!include ./standards_material_types.iuml
+!if $is_not_defined("$STANDARDS_MATERIAL_TYPES")
+    !include ./standards_material_types.iuml
 !endif
 
-!ifndef STANDARDS_MATERIALS
-!include ./standards_materials.iuml
+!if $is_not_defined("$STANDARDS_MATERIALS")
+    !include ./standards_materials.iuml
 !endif
 
-many(material_types, materials, l)
+$many(material_types, materials, l)
 
-!ifndef STANDARDS_PARTS
-!include ./standards_parts.iuml
+!if $is_not_defined("$STANDARDS_PARTS")
+    !include ./standards_parts.iuml
 !endif
 
-many(materials, parts, d)
+$many(materials, parts, d)
 
-!ifndef STANDARDS_TYPES
-!include ./standards_types.iuml
+!if $is_not_defined("$STANDARDS_TYPES")
+    !include ./standards_types.iuml
 !endif
 
-!ifndef STANDARDS_CONSTRUCTIONS
-!include ./standards_constructions.iuml
+!if $is_not_defined("$STANDARDS_CONSTRUCTIONS")
+    !include ./standards_constructions.iuml
 !endif
-
-!ifndef STANDARDS_SERIALS
-!include ./standards_serials.iuml
-!endif
-
-many(constructions, parts, u)
-
-many(changes, serials, u)
-
-many(types, serials)
-
-many(constructions, serials)
 
 namespace subjects {
-    !ifndef HIDE
-    !define HIDE
+    $set_hide()
+
+    !if $is_not_defined("$SUBJECTS_USERS")
+        !include ./subjects_users.iuml
     !endif
+
+    users : $comment("companies as users")
     
-    !ifndef SUBJECTS_USERS
-    !include ./subjects_users.iuml
-    !endif
-    
-    users : comment(companies as users)
-    
-    table(operators) {
-    comment(persons)
+    $table(operators) {
+        $comment("persons")
     }
     
-    many(users, operators)
+    $many(users, operators)
     
-    !ifdef HIDE
-    !undef HIDE
-    !endif
+    $unset_hide()
 }
 
-many(subjects.users, serials)
+!if $is_not_defined("$STANDARDS_SERIALS")
+    !include ./standards_serials.iuml
+!endif
 
-table(interaction_data) {
-    comment(log journal)
+$many(constructions, parts, u)
+
+$many(changes, serials, u)
+
+$many(types, serials)
+
+$many(constructions, serials)
+
+$many(subjects.users, serials)
+
+$table(interaction_data) {
+    $comment("log journal")
 }
 
-many(serials, interaction_data)
+$many(serials, interaction_data)
 
-many(subjects.operators, interaction_data)
+$many(subjects.operators, interaction_data)
 
 namespace readers {
-    table(serials) {
-    comment(some external devices)
+    $table(serials) {
+    $comment("some external devices")
     }
 }
 
-many(readers.serials, interaction_data, u)
-
+$many(readers.serials, interaction_data, u)
 
 @enduml

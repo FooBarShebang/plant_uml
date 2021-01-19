@@ -1,10 +1,10 @@
 @startuml components_function
 
-!include ../../Components.cuml
+!include ../../Components2.cuml
 
-function(Name)
+$function(Name)
 
-function(Long Name, Name2)
+$function(Long Name, Name2)
 
 Name - Name2
 

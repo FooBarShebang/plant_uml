@@ -1,0 +1,72 @@
+@startuml class2_example
+
+/' the purpose is to demonstrate the new preprocessor functions defined for
+the class diagram '/
+
+!if %not(%variable_exists($CLASSES))
+    !include ../Classes2.cuml
+!endif
+
+title Class Diagram Example
+
+/' standard syntax '/
+
+abstract class AbstractClass {
+    - {abstract} some_method() : int -> float
+}
+
+interface FooInterface {
+    + some_other_method() : int -> float
+}
+
+class BarClass {
+    - {static} some_class_attribute : int
+    + some_instance_attribute : float
+    - some_method() : int -> float # implemented
+}
+
+AbstractClass <|-- BarClass
+
+FooInterface <|-- BarClass
+
+enum States {
+    OK
+    NOK
+    NAN
+}
+
+/' extended syntax '/
+
+$prototype_class(Proto) {
+    - $static_field(some_class_attribute) : int
+    + some_instance_attribute : float
+    - $abstract_method("some_method") : int -> float
+}
+
+BarClass <-- Proto : < calls
+
+$mixin_class(Mix) {
+    + some_other_method() : int -> float
+}
+
+
+class Specific {
+    - some_method() : int -> float # implemented
+}
+
+Proto <|-- Specific
+
+Mix <|-- Specific
+
+$generic_class(Universal) {
+    + some__method() : type A -> float
+}
+
+States <-- Universal : < uses
+
+$singleton_class(Solo){
+    $static_field(class_attributes_only) : some_type
+    $static_method("class_methods_only", "A, B") : some_type, some_type -> other_type
+}
+
+@enduml

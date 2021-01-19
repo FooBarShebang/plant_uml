@@ -1,10 +1,10 @@
 @startuml components_class
 
-!include ../../Components.cuml
+!include ../../Components2.cuml
 
-class(ClassName)
+$class(ClassName)
 
-class(Class Alias, ClassName2)
+$class(Class Alias, ClassName2)
 
 ClassName - ClassName2
 

@@ -1,13 +1,13 @@
-!define STANDARDS_CHANGE_TYPES
+!$STANDARDS_CHANGE_TYPES = "v2"
 
-!ifndef TABLES
-!include ../Tables.cuml
+!if (%not(%variable_exists($TABLES)))
+    !include ../Tables2.cuml
 !endif
 
-enumeration(change_types) {
-    primary(id)
+$enumeration(change_types) {
+    $primary(id)
     {field} name: varchar(20) UNIQUE NOT NULL
-    !ifndef HIDE
-        comment(types of hardware changes to journal)
+    !if $is_not_hide()
+        $comment("types of hardware changes to journal")
     !endif
 }

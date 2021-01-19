@@ -1,37 +1,37 @@
 @startuml tables_unions
 
-!include ../../Tables.cuml
+!include ../../Tables2.cuml
 
-query(Query1, Query1) {
+$query(Query1, Query1) {
     field1: some type
     field2: some type
     field3: some type
-    comment(e.g. selection from some tables)
+    $comment("e.g. selection from some tables")
 }
 
-query(Query2, Query2) {
+$query(Query2, Query2) {
     field1: some type
     field2: some type
     field3: some type
-    comment(e.g. selection from other tables)
+    $comment("e.g. selection from other tables")
 }
 
-query(Query3, Query3) {
+$query(Query3, Query3) {
     field1: some type
     field2: some type
     field3: some type
-    comment(e.g. selection from yet other tables)
+    $comment("e.g. selection from yet other tables")
 }
 
-union(Query1, Query2, j1, Query1)
+$union(Query1, Query2, j1, Query1)
 
-union(j1, Query3, j2)
+$union(j1, Query3, j2)
 
-view(Report) {
+$view(Report) {
     field1: some type
     field2: some type
     field3: some type
-    comment(ORDER BY field1)
+    $comment("ORDER BY field1")
 }
 
 j2 <|- Report : SELECT

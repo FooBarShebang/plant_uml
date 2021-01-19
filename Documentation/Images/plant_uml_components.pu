@@ -1,8 +1,8 @@
 @startuml plant_uml_components
 
-!include ../../Components.cuml
+!include ../../Components2.cuml
 
-library(plant_uml) {
+$library(plant_uml) {
     folder class_example
     
     folder components_example
@@ -11,13 +11,21 @@ library(plant_uml) {
     
     folder Documentation
     
-    module(Classes.cuml)
+    $module(Classes.cuml)
     
-    module(Components.cuml)
+    $module(Components.cuml)
     
-    module(Tables.cuml)
+    $module(Tables.cuml)
     
-    module(General.cuml)
+    $module(General.cuml)
+
+    $module(Classes2.cuml)
+    
+    $module(Components2.cuml)
+    
+    $module(Tables2.cuml)
+    
+    $module(General2.cuml)
 }
 
 @enduml

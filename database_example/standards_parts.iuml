@@ -1,14 +1,14 @@
-!define STANDARDS_PARTS
+!STANDARDS_PARTS = "v2"
 
-!ifndef TABLES
-!include ../Tables.cuml
+!if (%not(%variable_exists($TABLES)))
+    !include ../Tables2.cuml
 !endif
 
-enumeration(parts) {
-    primary(id)
-    {field} foreign(material_id, materials, id)
-    {field} foreign(construction_id, constructions, id)
-    !ifndef HIDE
-        comment(list of parts of standards)
+$enumeration(parts) {
+    $primary(id)
+    $foreign(material_id, materials, id)
+    $foreign(construction_id, constructions, id)
+    !if $is_not_hide()
+        $comment("list of parts of standards")
     !endif
 }

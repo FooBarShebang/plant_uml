@@ -1,16 +1,16 @@
-!define STANDARDS_TYPES
+!$STANDARDS_TYPES = "v2"
 
-!ifndef TABLES
-!include ../Tables.cuml
+!if (%not(%variable_exists($TABLES)))
+    !include ../Tables2.cuml
 !endif
 
-enumeration(types) {
-    primary(id)
+$enumeration(types) {
+    $primary(id)
     {field} name: varchar(20) UNIQUE NOT NULL
-    !ifndef HIDE
+    !if $is_not_hide()
         {field} comment: varchar(255)
         can_calibrate: bool NOT NULL DEFAULT FALSE
         calibration_period: smallint NOT NULL DEFAULT 12
-        comment("usage types as production, etc.")
+        $comment("usage types as production, etc.")
     !endif
 }

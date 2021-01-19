@@ -1,10 +1,10 @@
 @startuml components_file
 
-!include ../../Components.cuml
+!include ../../Components2.cuml
 
-file(Name)
+$file(Name)
 
-file(Long Name, Name2)
+$file(Long Name, Name2)
 
 Name - Name2
 

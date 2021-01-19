@@ -11,3 +11,7 @@ Re-organized structure to fit better the submodule approach. Added key and link 
 ## 2020-01-22 Version 0.1.0.1
 
 Migrated the repository to GitLab. Note: all repositories using this repository as submodule must change the corresponding URL.
+
+## 2021-01-18 Version 1.0.0.0
+
+Added new PlantUML preprocessor based implementation of the same funcitonality. The legacy preprocessor variant remains.

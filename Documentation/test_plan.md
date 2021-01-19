@@ -10,6 +10,10 @@ Tests are grouped on their method of testing. These groupes are: Inspection (I),
 
 Initial version.
 
+### 20201-01-18 Revision 1 - version 1.0.0.0 (2021-01-18)
+
+Added the PlantUML preprocessor based functionality in addition to the legacy code. The requirements are not changed, therefore no changes in the test plan.
+
 ## Conventions
 
 ### Verification methods
@@ -114,8 +118,8 @@ None.
 * Remove the comment, but mis-spell the base filename or the relative path to the included file - the preview should not be generated, PlantUML error should be displayed instead
 * Spell the include file path / base name correctly - the preview should be generated correctly
 * Mis-spell (change) the name of any of the macroses defined; two outcomes must be observed
-  - for the macroses defining the components (function, class, file, module, package, library and pc) and the database objects (table, view, query, etc., joins, intersections, unions and exceptions, objects relations) the mis-spelled macros name is a syntax error - the preview should not be generated, PlantUML error should be displayed
-  - for the non-parameteric macroses (as class decorators) and parametric macroses for the attributes decorators (abstract method, static method / field, primary and foreign keys) the mis-spelled macros name is not a syntax error - the preview is generated, but the resulting image is wrong
+  * for the macroses defining the components (function, class, file, module, package, library and pc) and the database objects (table, view, query, etc., joins, intersections, unions and exceptions, objects relations) the mis-spelled macros name is a syntax error - the preview should not be generated, PlantUML error should be displayed
+  * for the non-parameteric macroses (as class decorators) and parametric macroses for the attributes decorators (abstract method, static method / field, primary and foreign keys) the mis-spelled macros name is not a syntax error - the preview is generated, but the resulting image is wrong
 
 **Test result**: PASS / FAIL (To be filled in the test report)
 
@@ -167,7 +171,6 @@ None.
 
 ---
 
-
 **Test identifier**: TEST-D-006
 
 **Requirement ID(s)**: REQ-FUN-F005, REQ-FUN-F006, REQ-FUN-F007, REQ-FUN-F008, REQ-FUN-F009
@@ -198,7 +201,7 @@ None.
 
 None.
 
-## Test definitions (Analysis) 
+## Test definitions (Analysis)
 
 **Test identifier**: TEST-A-001
 
@@ -214,11 +217,11 @@ None.
 
 * Inspect the content of the library. The files with the '.cuml' extension must be present.
 * Inspect each '.cuml' file
-  - It can be openned with any text editor (e.g. Notepad, GEdit, etc., or IDE, e.g. VS Code)
-  - It contains PlantUML code defining the macroses
-  - It contains the macroses designed for the generation of only specific type of the UML diagram: components, class or class diagram based database data model representation
-  - It contains macroses for all required functionality
-  - It contains the inline documentation for each defined macros, which provide clear reference on the syntax and intended use of the macros
+  * It can be openned with any text editor (e.g. Notepad, GEdit, etc., or IDE, e.g. VS Code)
+  * It contains PlantUML code defining the macroses
+  * It contains the macroses designed for the generation of only specific type of the UML diagram: components, class or class diagram based database data model representation
+  * It contains macroses for all required functionality
+  * It contains the inline documentation for each defined macros, which provide clear reference on the syntax and intended use of the macros
 
 **Test result**: PASS / FAIL (To be filled in the test report)
 

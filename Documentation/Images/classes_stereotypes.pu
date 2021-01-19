@@ -1,17 +1,17 @@
 @startuml classes_stereotypes
 
-!include ../../Classes.cuml
+!include ../../Classes2.cuml
 
-class Mixin1 <<MIXIN>>
+$mixin_class(Mixin1)
 
-class Mixin2 <<LEFT_MIXIN>>
+$left_mixin_class(Mixin2)
 
-class Mixin3 <<RIGHT_MIXIN>>
+$right_mixin_class(Mixin3)
 
-class Proto <<PROTOTYPE>>
+$prototype_class(Proto)
 
-class Single <<SINGLETON>>
+$singleton_class(Single)
 
-class ABC <<GENERIC>>
+$generic_class(ABC)
 
 @enduml

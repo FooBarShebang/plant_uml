@@ -1,7 +1,7 @@
 @startuml general_generated
 
-!include ../../General.cuml
+!include ../../General2.cuml
 
-title GENERATED
+title $generated()
 
 @enduml

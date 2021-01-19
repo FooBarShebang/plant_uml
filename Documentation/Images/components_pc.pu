@@ -1,10 +1,10 @@
 @startuml components_pc
 
-!include ../../Components.cuml
+!include ../../Components2.cuml
 
-pc(User)
+$pc(User)
 
-pc(Another User, User2)
+$pc(Another User, User2)
 
 interface network
 

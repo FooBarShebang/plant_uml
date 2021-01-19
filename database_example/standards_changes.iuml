@@ -1,17 +1,17 @@
-!define STANDARDS_CHANGES
+!$STANDARDS_CHANGES = "v2"
 
-!ifndef TABLES
-!include ../Tables.cuml
+!if (%not(%variable_exists($TABLES)))
+    !include ../Tables2.cuml
 !endif
 
-table(changes) {
-    primary(id)
+$table(changes) {
+    $primary(id)
     event_date: date NOT NULL
-    foreign(standard_id, serials, id)
-    foreign(change_id, change_types, id)
-    !ifndef HIDE\
+    $foreign(standard_id, serials, id)
+    $foreign(change_id, change_types, id)
+    !if $is_not_hide()
         {field} old_value: varchar(20)
         {field} new_value: varchar(20)
-        comment(journal of hardware changes)
+        $comment("journal of hardware changes")
     !endif
 }

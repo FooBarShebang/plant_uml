@@ -1,24 +1,24 @@
 @startuml tables_classes
 
-!include ../../Tables.cuml
+!include ../../Tables2.cuml
 
-table(Users) {
+$table(Users) {
     primary(id)
     {field} full_name: varchar(255)
 }
 
 Users : age : smallint
 
-enumeration(Keys)
+$enumeration(Keys)
 
-index(Users_index)
+$index(Users_index)
 
-sequence('Users_pkey_counter')
+$sequence('Users_pkey_counter')
 
-query(Query1)
+$query(Query1)
 
-query(Query2, NamedQuery)
+$query(Query2, NamedQuery)
 
-view(AllUsers)
+$view(AllUsers)
 
 @enduml

@@ -1,0 +1,48 @@
+/' for components and deployment diagrams using the new PlantUML preprocessor
+syntax and functionality'/
+
+!$COMPONENTS = "v2"
+
+!if %not(%variable_exists("$GENERAL"))
+    !include ./General2.cuml
+!endif
+
+/' internal implementation not for import! '/
+
+!unquoted procedure $generic_component($type, $stereotype, $name, $alias = "")
+    !if ($alias == "")
+        $type "$name" <<$stereotype>>
+    !else
+        $type "$name" <<$stereotype>>> as $alias
+    !endif
+!endprocedure
+
+/' actual components - for import! '/
+
+!unquoted procedure $class($name, $alias = "")
+    $generic_component(component, class, $name, $alias)
+!endprocedure
+
+!unquoted procedure $function($name, $alias = "")
+    $generic_component(component, function, $name, $alias)
+!endprocedure
+
+!unquoted procedure $file($name, $alias = "")
+    $generic_component(component, file, $name, $alias)
+!endprocedure
+
+!unquoted procedure $module($name, $alias = "")
+    $generic_component(frame, module, $name, $alias)
+!endprocedure
+
+!unquoted procedure $package($name, $alias = "")
+    $generic_component(package, package, $name, $alias)
+!endprocedure
+
+!unquoted procedure $library($name, $alias = "")
+    $generic_component(package, library, $name, $alias)
+!endprocedure
+
+!unquoted procedure $pc($name, $alias = "")
+    $generic_component(node, PC, $name, $alias)
+!endprocedure
