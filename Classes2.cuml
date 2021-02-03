@@ -18,17 +18,17 @@
 
 !unquoted procedure $left_mixin_class($name, $alias = "")
     !if ($alias == "")
-        class $name <<(M, lightblue) Left Mixin>>
+        class $name <<(L, lightblue) Left Mixin>>
     !else
-        class $name <<(M, lightblue) Left Mixin>> as $alias
+        class $name <<(L, lightblue) Left Mixin>> as $alias
     !endif
 !endprocedure
 
 !unquoted procedure $right_mixin_class($name, $alias = "")
     !if ($alias == "")
-        class $name <<(M, lightblue) Right Mixin>>
+        class $name <<(R, lightblue) Right Mixin>>
     !else
-        class $name <<(M, lightblue) Right Mixin>> as $alias
+        class $name <<(R, lightblue) Right Mixin>> as $alias
     !endif
 !endprocedure
 
