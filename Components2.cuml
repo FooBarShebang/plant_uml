@@ -13,7 +13,7 @@ syntax and functionality'/
     !if ($alias == "")
         $type "$name" <<$stereotype>>
     !else
-        $type "$name" <<$stereotype>>> as $alias
+        $type "$name" <<$stereotype>> as $alias
     !endif
 !endprocedure
 
